@@ -2,11 +2,32 @@
 ##1, http://www.targetscan.org/cgi-bin/targetscan/vert_71/view_gene.cgi?rs=ENST00000305921.3&taxid=9606&members=miR-15-5p/16-5p/195-5p/424-5p/497-5p&showcnc=0&shownc=0&subset=1#miR-15-5p/16-5p/195-5p/424-5p/497-5p
 ##2, http://www.mirdb.org/cgi-bin/mature_mir.cgi?name=hsa-miR-16-5p
 
+## read.csv will give you a data.frame, and what we need is a matirx, use as.matrix to convert will turn figures into characters(because we have characters in the dataframe). Converting between the two types is boring issue, so I choose to skip here.
+##setwd("D:\\importantbk\\working\\Temp_working\\Temp\\HE\\ALL_five_genes_20140410\\PPM1D")
+##lucifer_tab <- read.csv(file = "20160827_PPM1D.txt", sep = "\t", stringsAsFactor = F)
 
-setwd("D:\\importantbk\\working\\Temp_working\\Temp\\HE\\ALL_five_genes_20140410\\PPM1D")
+NC <- c(1,1,1)
+NC_sd <- c(0.01,0.01,0.01)
+names(NC) <- c("Ctrl", "Wt", "Mut")
+miR_16 <- c(1.21,0.61,1.23)
+miR_16_sd <- c(0.16,0.2,0.31)
+names(miR_16) <- c("Ctrl", "Wt", "Mut")
+lucifer_tab <- rbind(NC,miR_16)
+lucifer_sd <- rbind(NC_sd,miR_16_sd)
 
-lucifer_tab <- read.csv(file = "20160827_PPM1D.txt", sep = "\t", stringsAsFactor = F)
 
-barplot(lucifer_tab, beside = TRUE,legend = c("NC", "miR-16"), args.legend = list(x = "topleft", cex=2),ylim = c(0, 2),cex = 2,cex.axis=2)  
+bp <- barplot(lucifer_tab, beside = TRUE,legend = c("NC", "miR-16"), args.legend = list(x = "topleft", cex=2),ylim = c(0, 2),cex = 2,cex.axis=2)  
+
+arrows(bp, lucifer_tab, bp, lucifer_tab + lucifer_sd, lwd = 1.5,angle = 90, length = 0.1)
+axis(1,label = F)
 
 
+##################################
+##test
+##################################
+CCA <-c(3988, 4129, 2409, 7779)  
+names(CCA) <- c("ionosphere", "pima", "bupa", "German")  
+CCB <-c(3273, 3269, 2318, 5166)  
+names(CCB) <- c("ionosphere", "pima", "bupa", "German")  
+CC <- cbind(CCA, CCB)  
+barplot(t(CC), beside = TRUE,legend = c("Serial", "Parallel"),width = c(100, 100), args.legend = list(x = "topleft", cex=2),ylim = c(0, 8000),cex = 2,cex.axis=2)  
