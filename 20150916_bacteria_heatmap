@@ -1,0 +1,25 @@
+setwd("D:/wangliang/microflora/Cheng/microflora_datawork")
+library(gplots)
+library("RColorBrewer")
+
+
+micro_exp <- read.csv(file = "123.txt", sep = "\t", header = T, stringsAsFactor = F)
+
+micro_exp_clean <- micro_exp[,c(1,3,4)]
+
+row.names(micro_exp_clean) <- micro_exp_clean$NAME
+
+micro_exp_clean <- micro_exp_clean[,c(2,3)]
+
+micro_matrix <- data.matrix(micro_exp_clean)
+
+
+
+
+my_palette <- colorRampPalette(c( "blue", "floralwhite","red3"))(n = 299)
+col_breaks <- c(seq(-1,-0.3,length=100),seq(-0.2,0.2,length=100),seq(0.3,1,length=100))
+
+
+
+heatmap.2(micro_matrix, cexRow = 0.8, cexCol = 0.8, col=my_palette, breaks = col_breaks,density.info="none",trace="none", Colv = NA,margins =c(5,9))
+
