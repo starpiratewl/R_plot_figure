@@ -1,0 +1,13 @@
+plotStar <- function(x, y, radius, angle=180, xyratio=1, ...){
+    i <- 1:11
+    alpha <- 2*pi / 10
+    r <- radius * (i %% 2 + 1)/2
+    omega <- alpha * i + angle * pi /180
+    invisible(mapply(function(a, b, ...) 
+        polygon(r*sin(omega) + a, r*cos(omega) * xyratio + b, ...), 
+    x, y, ...))
+}
+plot.new()
+plotStar(.5, .5, .3, pch=3, col=2)
+
+
