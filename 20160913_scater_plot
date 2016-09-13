@@ -1,0 +1,24 @@
+## This plot will overview the distribution of differentiated methylation points
+
+setwd("D:\\wangliang\\dataplay\\QIAN\\zhou\\work")
+
+d <- read.csv("com_difbeta2.txt", header=T, sep="\t", stringsAsFactor = F)
+
+tab <- d[,c(1,2,4)]
+
+plot(tab[,2], tab[,3],pch=19, xlim=c(0,1),cex=0.7,cex.axis=1,font.axis=1,
+     xlab="KYSE.410.24Gy", ylab="KYSE.410", xaxt="n")
+
+
+library(ggplot2)
+
+qplot(KYSE.410.24Gy.AVG_Beta, KYSE.410.AVG_Beta, data = tab, alpha = I(1/20))
+
+KYSE_410_gy <- -log(tab[,2],100)
+
+KYSE_410 <- -log(tab[,3],100)
+
+
+qplot(KYSE_410_gy, KYSE_410,  alpha = I(1/50))
+
+
