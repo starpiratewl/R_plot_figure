@@ -67,8 +67,6 @@ sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abl
 
 
 
-
-
 png("distribution of TE1_16Gy.png")
 hist(tab1$TE.1.16.Gy.AVG_Beta, main = "TE.1.16.Gy.AVG_Beta", xlab = "TE.1.16.Gy.AVG_Beta")
 abline(v = 0.2, col = "purple")
