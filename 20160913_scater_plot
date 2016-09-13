@@ -59,7 +59,18 @@ dev.off()
 sp <- ggplot(tab1, aes(x = TE.1.AVG_Beta, y = TE.1.16.Gy.AVG_Beta)) + geom_point(alpha = I(1/20))
 sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abline(intercept = -0.2, slope = 1, color = "blue", size = 1) + theme_bw() + theme(panel.border = element_blank(), axis.line = element_line(color = "black", size = 3, lineend = "square"))
 
+sp + theme(axis.title.x = element_blank(), axis.title.y = element_blank())
 
+sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abline(intercept = -0.2, slope = 1, color = "blue", size = 1) + theme_bw() + theme(panel.border = element_blank(), axis.line.x = element_line(color = "black", size = 3, lineend = "square"))
+
+sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abline(intercept = -0.2, slope = 1, color = "blue", size = 1) + theme_bw() + theme(panel.border = element_blank(), axis.line.x = element_line(color = "black", size = 1, lineend = "square"),axis.line.y = element_line(color = "black", size = 1, lineend = "square"),axis.title.x = element_blank(), axis.title.y = element_blank())
+
+sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abline(intercept = -0.2, slope = 1, color = "blue", size = 1) + theme_bw() + theme(panel.border = element_blank(), axis.line.x = element_line(color = "black", size = 1, lineend = "square"),axis.line.y = element_line(color = "black", size = 1, lineend = "square"),axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.x =element_text(size=15), axis.text.y=element_text(size=15))
+
+
+pdf("test.pdf")
+sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abline(intercept = -0.2, slope = 1, color = "blue", size = 1) + theme_bw() + theme(panel.border = element_blank(), axis.line.x = element_line(color = "black", size = 1, lineend = "square"),axis.line.y = element_line(color = "black", size = 1, lineend = "square"),axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.x =element_text(size=15), axis.text.y=element_text(size=15))
+dev.off()
 
 
 
