@@ -1,6 +1,7 @@
+####################################################################################################################
 ## add lines according to different groups
 ## actually there are four lines here , but every two lines have the same height, so they seem to be one line.
-
+####################################################################################################################
 dat <- read.table(header=TRUE, text='
      cond group result hline
   control     A     10     9
@@ -23,13 +24,13 @@ bp <- ggplot(dat, aes(x=cond, y=result, fill=group)) +
 bp
 
 
-# The error bars get plotted over one another -- there are four but it looks
-# like two
+# The error bars get plotted over one another -- there are four but it looks like two
 bp + geom_errorbar(aes(y=hline, ymax=hline, ymin=hline), linetype="dashed")
 
-
+####################################################################################################################
 ## add lines according to different groups
 ## there are four lines here, each line has a different height
+####################################################################################################################
 
 dat <- read.table(header=TRUE, text='
      cond group result hline
@@ -47,8 +48,9 @@ bp
 bp + geom_errorbar(aes(y=hline, ymax=hline, ymin=hline), linetype="dashed", position=position_dodge())
 
 
-
+####################################################################################################################
 ## add lines to continuous data
+####################################################################################################################
 
 dat <- read.table(header=TRUE, text='
       cond xval yval
