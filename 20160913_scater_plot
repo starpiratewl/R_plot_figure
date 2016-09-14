@@ -57,6 +57,7 @@ qplot(TE.1.AVG_Beta, TE.1.16.Gy.AVG_Beta, data = tab1, alpha = I(1/20))
 dev.off()
 
 sp <- ggplot(tab1, aes(x = TE.1.AVG_Beta, y = TE.1.16.Gy.AVG_Beta)) + geom_point(alpha = I(1/20))
+
 sp + geom_abline(intercept = 0.2, slope = 1, color = "red", size = 1) + geom_abline(intercept = -0.2, slope = 1, color = "blue", size = 1) + theme_bw() + theme(panel.border = element_blank(), axis.line = element_line(color = "black", size = 3, lineend = "square"))
 
 sp + theme(axis.title.x = element_blank(), axis.title.y = element_blank())
@@ -78,15 +79,34 @@ dev.off()
 
 
 
-png("distribution of TE1_16Gy.png")
-hist(tab1$TE.1.16.Gy.AVG_Beta, main = "TE.1.16.Gy.AVG_Beta", xlab = "TE.1.16.Gy.AVG_Beta")
-abline(v = 0.2, col = "purple")
+
+
+require(Cairo)
+CairoPDF("distribution of TE1_16Gy.pdf", 7, 7) #单位为英寸
+hist(tab1$TE.1.16.Gy.AVG_Beta, main = "", xlab = "", ylab = "")
+abline(v = 0.2, col = "blue", lwd = 5)
 text(0.3, 95010, "31.71%", pos=3, cex = 1.5, font =1)
 
-abline(v = 0.8, col = "purple")
+abline(v = 0.8, col = "blue", lwd = 5)
+text(0.7, 95010, "45.66%", pos=3, cex = 1.5, font =1)
+
+dev.off() #关闭图像设备，同时储存图片
+ 
+
+
+
+
+png("distribution of TE1_16Gy.png")
+##hist(tab1$TE.1.16.Gy.AVG_Beta, main = "TE.1.16.Gy.AVG_Beta", xlab = "TE.1.16.Gy.AVG_Beta")
+hist(tab1$TE.1.16.Gy.AVG_Beta, main = "", xlab = "", ylab = "")
+abline(v = 0.2, col = "blue", lwd = 5)
+text(0.3, 95010, "31.71%", pos=3, cex = 1.5, font =1)
+
+abline(v = 0.8, col = "blue", lwd = 5)
 text(0.7, 95010, "45.66%", pos=3, cex = 1.5, font =1)
 
 dev.off()
+
 
 length(tab1$TE.1.16.Gy.AVG_Beta[tab1$TE.1.16.Gy.AVG_Beta > 0.8]) / length(tab1$TE.1.16.Gy.AVG_Beta)
 0.4566128
@@ -94,6 +114,25 @@ length(tab1$TE.1.16.Gy.AVG_Beta[tab1$TE.1.16.Gy.AVG_Beta > 0.8]) / length(tab1$T
 
 length(tab1$TE.1.16.Gy.AVG_Beta[tab1$TE.1.16.Gy.AVG_Beta < 0.2]) / length(tab1$TE.1.16.Gy.AVG_Beta)
 0.3171291
+
+
+
+
+
+
+
+
+require(Cairo)
+CairoPDF("distribution of TE1.pdf", 9, 9) #单位为英寸
+hist(tab1$TE.1.AVG_Beta, main = "", xlab = "", ylab = "")
+abline(v = 0.2, col = "blue", lwd = 5)
+text(0.3, 120000, "32.45%", pos=3, cex = 1.5, font =1)
+
+abline(v = 0.8, col = "blue", lwd = 5)
+text(0.7, 120000, "49.32%", pos=3, cex = 1.5, font =1)
+
+dev.off() #关闭图像设备，同时储存图片
+
 
 
 
