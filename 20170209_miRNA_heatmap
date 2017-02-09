@@ -1,0 +1,62 @@
+setwd("D:\\importantbk\\refernce_material\\summary\\important_BK\\My_work\\LncRNA\\TCGA_data")
+
+library(gplots)
+library(RColorBrewer)
+
+
+
+micro_exp <- read.csv(file = "expression_matrix_tcga_all.txt", sep = "\t", header = T, stringsAsFactor = F)
+
+micro_exp_clean <- micro_exp[,-1]
+
+row.names(micro_exp_clean) <- micro_exp[,1]
+
+micro_matrix <- data.matrix(micro_exp_clean)
+
+
+
+
+my_palette <- colorRampPalette(c( "blue", "floralwhite","red3"))(n = 299)
+col_breaks <- c(seq(-1,-0.3,length=100),seq(-0.2,0.2,length=100),seq(0.3,1,length=100))
+
+
+
+heatmap.2(micro_matrix)
+
+
+heatmap.2(micro_matrix, cexRow = 0.8, cexCol = 0.8, col=my_palette, breaks = col_breaks,density.info="none",trace="none",margins =c(5,9))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
