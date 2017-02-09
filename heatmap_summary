@@ -1,0 +1,30 @@
+library(ggplot2)
+library(ALL) #可以使用biocLite("ALL")安装该数据包
+data("ALL")
+library(limma)
+eset<-ALL[,ALL$mol.biol %in% c("BCR/ABL","ALL1/AF4")]
+f<-factor(as.character(eset$mol.biol))
+design<-model.matrix(~f)
+fit<-eBayes(lmFit(eset,design)) #对基因芯片数据进行分析，得到差异表达的数据
+selected  <- p.adjust(fit$p.value[, 2]) <0.001 
+esetSel <- eset[selected,] #选择其中一部分绘制热图
+dim(esetSel) #从这尺度上看，数目并不多，但也不少。如果基因数过多，可以分两次做图。
+Features  Samples 
+      84       47
+
+
+library(hgu95av2.db)
+data<-exprs(esetSel)
+probes<-rownames(data)
+symbol<-mget(probes,hgu95av2SYMBOL,ifnotfound=NA)
+symbol<-do.call(rbind,symbol)
+symbol[is.na(symbol[,1]),1]<-rownames(symbol)[is.na(symbol[,1])]
+rownames(data)<-symbol[probes,1] #给每行以基因名替换探针名命名，在绘制热图时直接显示基因名。
+heatmap(data,cexRow=0.5)
+
+
+##这个图有三个部分，样品分枝树图和基因分枝树图，以及热图本身。之所以对样品进行聚类分析排序，是因为这次的样品本身并没有分组。如果有分组的话，那么可以关闭对样品的聚类分析。对基因进行聚类分析排序，主要是为了色块好看，其实可以选择不排序，或者使用GO聚类分析排序。上面的这种热图，方便简单，效果非常不错。
+
+##接下来我们假设样品是分好组的，那么我们想用不同的颜色来把样品组标记出来，那么我们可以使用ColSideColors参数来实现。同时，我们希望变更热图的渐变填充色，可以使用col参数来实现。
+
+
