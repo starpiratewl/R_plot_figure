@@ -26,7 +26,8 @@ heatmap.2(micro_matrix)
 
 heatmap.2(micro_matrix, cexRow = 0.8, cexCol = 0.8, col=my_palette, breaks = col_breaks,density.info="none",trace="none",margins =c(5,9))
 
-
+dev.pdf()
+pheatmap(micro_matrix, cellwidth = 6, cellheight = 5, fontsize=9, fontsize_row=6) #设定格子的尺寸
 
 
 
