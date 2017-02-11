@@ -57,15 +57,15 @@ pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=9, fontsize_row=6) 
 
 
 
-
+## pay attention here the common pdf() function will not save the result of pheatmap, because the pheatmap have the method built in
 pdf("c:/mirna_heatmap.pdf"，width=120, height=8)
 pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=9, fontsize_row=6) #设定格子的尺寸
 dev.off()
 
 
-pdf(file = "haha_heatmap.pdf"，width=120, height=8)
-pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=6, fontsize_row=9) 
-dev.off()
+## this will save the pdf files correctly
+pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=6, fontsize_row=9, "mirna_heatmap.pdf") 
+
 
 
 
