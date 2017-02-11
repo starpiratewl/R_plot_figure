@@ -1,17 +1,84 @@
 setwd("D:\\importantbk\\refernce_material\\summary\\important_BK\\My_work\\LncRNA\\TCGA_data")
 
+setwd("D:\\He_fund")
+
+
 library(gplots)
 library(RColorBrewer)
+library(pheatmap)
+
+
+mi128_exp <- read.csv(file = "expression_matrix_128_TCGA.txt", sep = "\t", header = T, stringsAsFactor = F)
+mi128_exp_clean <- mi128_exp[,-1]
+row.names(mi128_exp_clean) <- mi128_exp[,1]
+
+
+mi27a_exp <- read.csv(file = "expression_matrix_27a_TCGA.txt", sep = "\t", header = T, stringsAsFactor = F)
+mi27a_exp_clean <- mi27a_exp[,-1]
+row.names(mi27a_exp_clean) <- mi27a_exp[,1]
+
+
+mi155_exp <- read.csv(file = "expression_matrix_155_TCGA.txt", sep = "\t", header = T, stringsAsFactor = F)
+mi155_exp_clean <- mi155_exp[,-1]
+row.names(mi155_exp_clean) <- mi155_exp[,1]
+
+
+mi150_exp <- read.csv(file = "expression_matrix_150_TCGA.txt", sep = "\t", header = T, stringsAsFactor = F)
+mi150_exp_clean <- mi150_exp[,-1]
+row.names(mi150_exp_clean) <- mi150_exp[,1]
+
+
+mi133_exp <- read.csv(file = "expression_matrix_133_TCGA.txt", sep = "\t", header = T, stringsAsFactor = F)
+mi133_exp_clean <- mi133_exp[,-1]
+row.names(mi133_exp_clean) <- mi133_exp[,1]
+
+
+mi204_exp <- read.csv(file = "expression_matrix_204_TCGA.txt", sep = "\t", header = T, stringsAsFactor = F)
+mi204_exp_clean <- mi204_exp[,-1]
+row.names(mi204_exp_clean) <- mi204_exp[,1]
+
+
+miExp <- rbind(mi128_exp_clean,mi133_exp_clean,mi150_exp_clean,mi155_exp_clean,mi27a_exp_clean,mi204_exp_clean)
+
+
+miMatrix <- data.matrix(miExp)
 
 
 
-micro_exp <- read.csv(file = "expression_matrix_tcga_all.txt", sep = "\t", header = T, stringsAsFactor = F)
+hctest <- hclust(dist(t(miMatrix)))
+groupstest <- cutree(hctest, k = 6)
 
-micro_exp_clean <- micro_exp[,-1]
+groupsc <- groupstest[groupstest == 3|groupstest == 1|groupstest == 4|groupstest == 6]
 
-row.names(micro_exp_clean) <- micro_exp[,1]
+miMatrixc <- miMatrix[,colnames(miMatrix) %in% names(groupsc)]
 
-micro_matrix <- data.matrix(micro_exp_clean)
+pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=9, fontsize_row=6) #设定格子的尺寸
+
+
+
+
+
+pdf("c:/mirna_heatmap.pdf"，width=120, height=8)
+pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=9, fontsize_row=6) #设定格子的尺寸
+dev.off()
+
+
+pdf(file = "haha_heatmap.pdf"，width=120, height=8)
+pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=6, fontsize_row=9) 
+dev.off()
+
+
+
+
+
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 20, fontsize=9, fontsize_row=6) #设定格子的尺寸
+
+
+
+
+
+
 
 
 
@@ -23,11 +90,14 @@ col_breaks <- c(seq(-1,-0.3,length=100),seq(-0.2,0.2,length=100),seq(0.3,1,lengt
 
 heatmap.2(micro_matrix)
 
-
 heatmap.2(micro_matrix, cexRow = 0.8, cexCol = 0.8, col=my_palette, breaks = col_breaks,density.info="none",trace="none",margins =c(5,9))
 
+
+
+
+
 pdf("mirna_heatmap.pdf"，width=120, height=8)
-pheatmap(micro_matrix, cellwidth = 6, cellheight = 5, fontsize=9, fontsize_row=6) #设定格子的尺寸
+pheatmap(miMatrix, cellwidth = 5, cellheight = 20, fontsize=9, fontsize_row=6) #设定格子的尺寸
 dev.off()
 
 
