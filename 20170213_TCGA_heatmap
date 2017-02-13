@@ -1,0 +1,81 @@
+setwd("E:\\TCGA")
+
+
+library(gplots)
+library(RColorBrewer)
+library(pheatmap)
+
+#####################################
+mir128_exp <- read.csv(file = "128_3p.txt", sep = "\t", stringsAsFactor = F)
+mir128_clean <- mir128_exp[, -c(1,2)]
+row.names(mir128_clean) <- mir128_exp[,2]
+
+miMatrix <- data.matrix(mir128_clean)
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 8, fontsize=9, fontsize_row=6, file = "mir128_heatmap.pdf")
+mir128_list <- c("","","",)
+
+
+#####################################
+mir27a_exp <- read.csv(file = "27a_5p.txt", sep = "\t", stringsAsFactor = F)
+mir27a_clean <- mir27a_exp[, -c(1,2)]
+row.names(mir27a_clean) <- mir27a_exp[,2]
+
+miMatrix <- data.matrix(mir27a_clean)
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 8, fontsize=9, fontsize_row=6, file = "mir27a_heatmap.pdf")
+
+
+
+#####################################
+mir133a_exp <- read.csv(file = "133a_3p.txt", sep = "\t", stringsAsFactor = F)
+mir133a_clean <- mir133a_exp[, -c(1,2)]
+row.names(mir133a_clean) <- mir133a_exp[,2]
+
+miMatrix <- data.matrix(mir133a_clean)
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 8, fontsize=9, fontsize_row=6, file = "mir133a_heatmap.pdf")
+
+
+
+#####################################
+mir150_exp <- read.csv(file = "150_5p.txt", sep = "\t", stringsAsFactor = F)
+mir150_clean <- mir150_exp[, -c(1,2)]
+row.names(mir150_clean) <- mir150_exp[,2]
+
+miMatrix <- data.matrix(mir150_clean)
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 8, fontsize=9, fontsize_row=6, file = "mir150_heatmap.pdf")
+
+
+
+#####################################
+mir155_exp <- read.csv(file = "155_5p.txt", sep = "\t", stringsAsFactor = F)
+mir155_clean <- mir155_exp[, -c(1,2)]
+row.names(mir155_clean) <- mir155_exp[,2]
+
+miMatrix <- data.matrix(mir155_clean)
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 8, fontsize=9, fontsize_row=6, file = "mir155_heatmap.pdf")
+
+
+
+
+#####################################
+mir204_exp <- read.csv(file = "204_5p.txt", sep = "\t", stringsAsFactor = F)
+mir204_clean <- mir204_exp[, -c(1,2)]
+row.names(mir204_clean) <- mir204_exp[,2]
+
+miMatrix <- data.matrix(mir204_clean)
+
+pheatmap(miMatrix, cellwidth = 4, cellheight = 8, fontsize=9, fontsize_row=6, file = "mir204_heatmap.pdf")
+
+
+
+
+
+
+
+
+
+
