@@ -99,7 +99,7 @@ miMatrixclean <- miMatrixc[-c(2,4,8,12),]
 
 miData <- t(miMatrixclean)
 
-pheatmap(miData, cellwidth = 20, cellheight = 4, fontsize=12, fontsize_row=6,file = "mir_heatmap.pdf") #设定格子的尺寸
+pheatmap(miData, cellwidth = 20, cellheight = 8, fontsize=12, fontsize_row=8,file = "mir_heatmap_new.pdf") #设定格子的尺寸
 
 
 
