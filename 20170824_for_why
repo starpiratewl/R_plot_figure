@@ -13,7 +13,7 @@ row.names(up_clean) <- up_exp[,1]
 
 
 down_exp <- read.csv(file = "down.txt", sep = "\t", header = T, stringsAsFactor = F)
-down_clean <- down_exp[,-1]
+down_clean <- down_exp[,-c(1,2)]
 row.names(down_clean) <- down_exp[,1]
 
 
@@ -52,6 +52,57 @@ groupsc <- groupstest[groupstest == 3|groupstest == 1|groupstest == 4|groupstest
 miMatrixc <- miMatrix[,colnames(miMatrix) %in% names(groupsc)]
 
 pheatmap(miMatrixc, cellwidth = 5, cellheight = 20, fontsize=9, fontsize_row=6) #设定格子的尺寸
+
+
+
+
+
+
+
+### up
+miMatrix_up <- data.matrix(up_clean)
+my_palette <- colorRampPalette(c( "blue", "floralwhite","red3"))(n = 299)
+col_breaks <- c(seq(-22,0,length=100),seq(0.1,1,length=100),seq(2,8,length=100))
+
+heatmap.2(miMatrix_up)
+
+pdf("up_heatmap.pdf")
+heatmap.2(miMatrix_up, cexRow = 0.8, cexCol = 0.8, col=my_palette, breaks = col_breaks,density.info="none",trace="none",margins =c(5,9))
+dev.off()
+
+
+###dwon
+miMatrix_down <- data.matrix(down_clean)
+my_palette <- colorRampPalette(c( "blue", "floralwhite","red"))(n = 299)
+col_breaks <- c(seq(-22,0,length=100),seq(0.1,1,length=100),seq(2,8,length=100))
+
+heatmap.2(miMatrix_down)
+
+pdf("dwon_heatmap.pdf")
+heatmap.2(miMatrix_down, cexRow = 0.8, cexCol = 0.8, col=my_palette, breaks = col_breaks,density.info="none",trace="none",margins =c(5,9))
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
