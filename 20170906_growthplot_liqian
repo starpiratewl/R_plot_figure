@@ -13,6 +13,9 @@ head(growth_tab)
 ##6 0.4919 0.3787 0.6458 0.5372      0.7376      0.4910    0h
 
 
+## make the plot with error bars
+
+pdf("NC_vs_siRNA.pdf")
 plot(tapply(growth_tab$si.NC, growth_tab$Stage, mean), type="b",pch=15, lty=1, col="red", ylim=c(0, 4),main="si.NC vs. siRNA",xlab="Time Series", ylab="OD450(nm)", xaxt = "n")
 
 axis(1, at=c(1,2,3,4,5), labels=c("0h","24h", "48h","72h", "96h"), col.axis="black", las=0, tck=-0.02)
@@ -23,11 +26,51 @@ lines(tapply(growth_tab$HULC.siRNA2, growth_tab$Stage, mean), type="b",pch=17, l
 
 legend("topleft", inset=.05, c("si.NC","HULC.siRNA1","HULC.siRNA2"), lty=c(1, 2, 3), pch=c(15, 16, 17), col=c("red", "blue", "green"))
 
-arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
+nc_mean <- tapply(growth_tab$si.NC, growth_tab$Stage, mean)
+nc_se <- tapply(growth_tab$si.NC, growth_tab$Stage, sd)/sqrt(6)
+
+
+HULC.siRNA1_mean <- tapply(growth_tab$HULC.siRNA1, growth_tab$Stage, mean)
+HULC.siRNA1_se <- tapply(growth_tab$HULC.siRNA1, growth_tab$Stage, sd)/sqrt(6)
+
+
+HULC.siRNA2_mean <- tapply(growth_tab$HULC.siRNA2, growth_tab$Stage, mean)
+HULC.siRNA2_se <- tapply(growth_tab$HULC.siRNA2, growth_tab$Stage, sd)/sqrt(6)
+
+arrows(c(1,2,3,4,5),nc_mean+nc_se, c(1,2,3,4,5), nc_mean-nc_se, angle=90, code=3, col = "red", length = 0.1)
+
+arrows(c(1,2,3,4,5),HULC.siRNA1_mean+HULC.siRNA1_se, c(1,2,3,4,5), HULC.siRNA1_mean-HULC.siRNA1_se, angle=90, code=3, col = "blue", length = 0.1)
+
+arrows(c(1,2,3,4,5),HULC.siRNA2_mean+HULC.siRNA2_se, c(1,2,3,4,5), HULC.siRNA2_mean-HULC.siRNA2_se, angle=90, code=3, col = "green", length = 0.1)
+dev.off()
 
 
 
 
+
+
+pdf("Vec_vs_HULC.pdf")
+plot(tapply(growth_tab$Vec, growth_tab$Stage, mean), type="b",pch=15, lty=1, col="red", ylim=c(0, 4),main="Vec vs HULC",xlab="Time Series", ylab="OD450(nm)", xaxt = "n")
+
+axis(1, at=c(1,2,3,4,5), labels=c("0h","24h", "48h","72h", "96h"), col.axis="black", las=0, tck=-0.02)
+
+lines(tapply(growth_tab$HULC, growth_tab$Stage, mean), type="b",pch=16, lty=2, col="blue")
+
+legend("topleft", inset=.05, c("Vec","HULC"), lty=c(1, 2), pch=c(15, 16), col=c("red", "blue"))
+
+Vec_mean <- tapply(growth_tab$Vec, growth_tab$Stage, mean)
+Vec_se <- tapply(growth_tab$Vec, growth_tab$Stage, sd)/sqrt(6)
+
+
+HULC_mean <- tapply(growth_tab$HULC, growth_tab$Stage, mean)
+HULC_se <- tapply(growth_tab$HULC, growth_tab$Stage, sd)/sqrt(6)
+
+
+arrows(c(1,2,3,4,5),Vec_mean+Vec_se, c(1,2,3,4,5), Vec_mean-Vec_se, angle=90, code=3, col = "red", length = 0.1)
+
+arrows(c(1,2,3,4,5),HULC_mean+HULC_se, c(1,2,3,4,5), HULC_mean-HULC_se, angle=90, code=3, col = "blue", length = 0.1)
+
+dev.off()
 
 
 
