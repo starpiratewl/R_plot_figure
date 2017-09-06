@@ -12,6 +12,32 @@ head(growth_tab)
 ##5 0.4850 0.3747 0.6105 0.5458      0.7110      0.4954    0h
 ##6 0.4919 0.3787 0.6458 0.5372      0.7376      0.4910    0h
 
+
+plot(tapply(growth_tab$si.NC, growth_tab$Stage, mean), type="b",pch=15, lty=1, col="red", ylim=c(0, 4),main="si.NC vs. siRNA",xlab="Time Series", ylab="OD450(nm)", xaxt = "n")
+
+axis(1, at=c(1,2,3,4,5), labels=c("0h","24h", "48h","72h", "96h"), col.axis="black", las=0, tck=-0.02)
+
+lines(tapply(growth_tab$HULC.siRNA1, growth_tab$Stage, mean), type="b",pch=16, lty=2, col="blue")
+
+lines(tapply(growth_tab$HULC.siRNA2, growth_tab$Stage, mean), type="b",pch=17, lty=2, col="green")
+
+legend("topleft", inset=.05, c("si.NC","HULC.siRNA1","HULC.siRNA2"), lty=c(1, 2, 3), pch=c(15, 16, 17), col=c("red", "blue", "green"))
+
+arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ################################################################################
 ## the plotmeans() function in gplots package
 ## it is good, but in my case, there is something wrong with the error bar plotting, so I turn to other method
