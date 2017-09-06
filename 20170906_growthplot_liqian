@@ -14,6 +14,15 @@ head(growth_tab)
 
 
 ## make the plot with error bars
+## remember the parameters of arrows() function:
+## length : mean the length of the arrows
+## col : color of the arrows
+## code: with both arrows of each side or with one arrows of one side
+## lty: the line type of the arrows
+## lwd: the line width of the arrows
+## angle: the angle of the arrows
+
+
 
 pdf("NC_vs_siRNA.pdf")
 plot(tapply(growth_tab$si.NC, growth_tab$Stage, mean), type="b",pch=15, lty=1, col="red", ylim=c(0, 4),main="si.NC vs. siRNA",xlab="Time Series", ylab="OD450(nm)", xaxt = "n")
