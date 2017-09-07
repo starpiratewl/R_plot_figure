@@ -22,10 +22,10 @@ head(growth_tab)
 ## lwd: the line width of the arrows
 ## angle: the angle of the arrows
 
+par(xaxs = "i", yaxs = "i")
 
-
-pdf("NC_vs_siRNA.pdf")
-plot(tapply(growth_tab$si.NC, growth_tab$Stage, mean), type="b",pch=15, lty=1, col="red", ylim=c(0, 4),main="si.NC vs. siRNA",xlab="Time Series", ylab="OD450(nm)", xaxt = "n")
+##pdf("NC_vs_siRNA.pdf")
+plot(tapply(growth_tab$si.NC, growth_tab$Stage, mean), type="b",pch=15, lty=1, col="red", ylim=c(0, 4),main="si.NC vs. siRNA",xlab="Time Series", ylab="OD450(nm)", xaxt = "n", bty ='n')
 
 axis(1, at=c(1,2,3,4,5), labels=c("0h","24h", "48h","72h", "96h"), col.axis="black", las=0, tck=-0.02)
 
@@ -51,7 +51,7 @@ arrows(c(1,2,3,4,5),nc_mean+nc_se, c(1,2,3,4,5), nc_mean-nc_se, angle=90, code=3
 arrows(c(1,2,3,4,5),HULC.siRNA1_mean+HULC.siRNA1_se, c(1,2,3,4,5), HULC.siRNA1_mean-HULC.siRNA1_se, angle=90, code=3, col = "blue", length = 0.1)
 
 arrows(c(1,2,3,4,5),HULC.siRNA2_mean+HULC.siRNA2_se, c(1,2,3,4,5), HULC.siRNA2_mean-HULC.siRNA2_se, angle=90, code=3, col = "green", length = 0.1)
-dev.off()
+##dev.off()
 
 
 
