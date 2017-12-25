@@ -1,3 +1,5 @@
+## thi is the example data
+
 datax <- na.omit(airquality)[,1:4]
 cols <- terrain.colors(ncol(datax) - 1)
 layout(matrix(1:4, ncol=2))		## 将图形分割为四部分
@@ -11,15 +13,16 @@ for (ndx in 1:4){
 }
 
 
+## this is the data of chenzhuo
 
+tongji2016 <- c(13495, 1174, 2606, 2761, 1274)
+tongji2017 <- c(16457, 1717, 3000, 3303, 1494)
 
+tongji_tab <- cbind(tongji2016,tongji2017)
 
-
-
-
-
-
-
+tongji_tab <- as.data.frame(tongji_tab)
+row.names(tongji_tab) <- c("常规"， “细胞学”， “妇科TCT”， “冰冻”， “会诊”)
+gap.barplot(tongji_tab, y.cols=1:2, col=cols, brk.type=brkt, max.fold=3, ratio=0.2, cex.error=0.3)
 
 
 
