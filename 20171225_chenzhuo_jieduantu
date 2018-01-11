@@ -14,20 +14,29 @@ for (ndx in 1:4){
 
 
 ## this is the data of chenzhuo
+tongji2015 <- c(11777, 3410, 2652, 1125)
+tongji2016 <- c(13753, 3814, 2832, 1304)
+tongji2017 <- c(16780, 4661, 3370, 1519)
 
-tongji2016 <- c(13495, 1174, 2606, 2761, 1274)
-tongji2017 <- c(16457, 1717, 3000, 3303, 1494)
-
-tongji_tab <- cbind(tongji2016,tongji2017)
+tongji_tab <- cbind(tongji2015,tongji2016,tongji2017)
 
 tongji_tab <- as.data.frame(tongji_tab)
-row.names(tongji_tab) <- c("常规"， “细胞学”， “妇科TCT”， “冰冻”， “会诊”)
-gap.barplot(tongji_tab, y.cols=1:2, col=cols, brk.type=brkt, max.fold=3, ratio=0.2, cex.error=0.3)
+row.names(tongji_tab) <- c("常规",“细胞学”,“冰冻”,“会诊”)
+cols <- c("red","green","blue")
+gap.barplot(tongji_tab, y.cols=1:3, col=cols, brk.type=brkt, max.fold=3, ratio=0.2, cex.error=0.3)
 
 
+ftongji2015 <- c(270, 182, 307, 1171)
+ftongji2016 <- c(556, 201, 164, 127)
+ftongji2017 <- c(1383, 370, 233, 809)
+ftongji_tab <- cbind(ftongji2015,ftongji2016,ftongji2017)
+
+ftongji_tab <- as.data.frame(ftongji_tab)
+ftongji_tab1 <- t(ftongji_tab)
+colnames(ftongji_tab1) <- c("ARMS",“FISH”,“Sequencing”,“qRTPCR”)
 
 
-
+barplot(ftongji_tab1,main="分子病理工作统计",xlab="类别", ylab="数量",col=c("red", "yellow", "green"),legend=c("2015","2016","2017"), beside=TRUE)
 
 
 
