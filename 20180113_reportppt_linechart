@@ -1,11 +1,12 @@
-revenuen <- c(1858100,2034710,4031450)
-incrementr <- c(0.111245,0.140482072,0.590497532)
+revenuen <- c(1858100,2034710,4904020)
+incrementr <- c(0.0887046,0.09504871,1.410181)
 xx <- c(1,2,3)
-yy <- incrementr * 4100000
 
-zzlabs <- c("10%", "20%","30%","40%","50%","60%","70%","80%","90%","100%")
+yy <- incrementr/1.56 * 5000000
 
-yaxis <- c(1:10) * 410000
+zzlabs <- c("15%", "30%","45%","60%","75%","90%","105%","120%","135%","150%")
+
+yaxis <- c(1:10) * 500000
 
 opar <- par(no.readonly = T)
 
@@ -13,7 +14,7 @@ opar <- par(no.readonly = T)
 pdf("test.pdf")
 par(mar = c(5,4,4,8) + 0.1)
 
-plot(xx, revenuen, type = "b", pch = 21, col = "red", yaxt = "n", lty = 3, ann = FALSE, ylim = c(0,4100000))
+plot(xx, revenuen, type = "b", pch = 21, col = "red", yaxt = "n", lty = 3, ann = FALSE, ylim = c(0,5000000))
 
 lines(xx, yy, type = "b" , pch = 2, col = "blue", lty = 2)
 
