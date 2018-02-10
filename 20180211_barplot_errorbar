@@ -16,6 +16,15 @@ U87_hulc_antisense <- c(5.6519841, 7.651981313, 5.98761322)
 
 
 
+qpcrm <- c(mean(SH44_mi_sense),mean(SH44_mi_antisense),mean(SH44_hulc_sense),mean(SH44_hulc_antisense),mean(U87_mi_sense),mean(U87_antisense),mean(U87_hulc_sense),mean(U87_hulc_antisense))
+
+
+qpcrsd <- c(sd(SH44_mi_sense),sd(SH44_mi_antisense),sd(SH44_hulc_sense),sd(SH44_hulc_antisense),sd(U87_mi_sense),sd(U87_antisense),sd(U87_hulc_sense),sd(U87_hulc_antisense))
 
 
 
+pdf(file = "rna_pulldown.pdf")
+bp <- barplot(qpcrm, xlab = "cells", ylim = c(0,20), ylab = "Relative RNA level", col = rainbow(9))
+
+arrows(bp, qpcrm, bp, qpcrm + qpcrsd, lwd = 1.5,angle = 90, length = 0.1)
+dev.off()
